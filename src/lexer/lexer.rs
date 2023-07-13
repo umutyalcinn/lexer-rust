@@ -3,7 +3,7 @@ pub enum Token<>{
     Illegal,
     EOF,
     Identifier(Vec<u8>),
-    Integer(usize),
+    Number(usize),
     Assign,
     Plus,
     Comma,
@@ -72,7 +72,7 @@ impl Lexer {
                     }
                 } else if self.is_number() {
                     let number = self.read_number();
-                    return Token::Integer(number);
+                    return Token::Number(number);
                 }
                 else {
                     return Token::Illegal
@@ -127,7 +127,7 @@ mod tests {
             Token::Assign,
             Token::Let,
             Token::Plus,
-            Token::Integer(192),
+            Token::Number(192),
             Token::Identifier("Batu".into()),
             Token::LSquirly,
             Token::RSquirly,
@@ -155,7 +155,7 @@ mod tests {
             Token::Assign,
             Token::Identifier("y".into()),
             Token::Plus,
-            Token::Integer(15),
+            Token::Number(15),
             Token::EOF,
         ];
         let mut res = vec![];
